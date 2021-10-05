@@ -50,7 +50,7 @@ class Cutie(commands.Cog):
 		nameOfCutie = ""
 
 		if weNeedToPickSomeone:
-			message_history_depth = self.config.guild(ctx.guild).message_history_depth()
+			message_history_depth = await self.config.guild(ctx.guild).message_history_depth()
 
 			allNLastAuthors = {}
 			async for msg in ctx.channel.history(limit=int(message_history_depth)):
@@ -67,8 +67,8 @@ class Cutie(commands.Cog):
 				else:
 					nameOfCutie = newCutie.display_name
 
-				self.config.guild(ctx.guild).cutie_current_id.set(newCutie.id)
-				self.config.guild(ctx.guild).cutie_last_picked_at.set(datetime.now().timestamp())
+				await self.config.guild(ctx.guild).cutie_current_id.set(newCutie.id)
+				await self.config.guild(ctx.guild).cutie_last_picked_at.set(datetime.now().timestamp())
 
 		else:
 			# Just get the user's name
