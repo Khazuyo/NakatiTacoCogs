@@ -94,7 +94,7 @@ class Cutie(commands.Cog):
 		cutie_last_picked_at = await self.config.guild(ctx.guild).cutie_last_picked_at()
 		message_history_depth = await self.config.guild(ctx.guild).message_history_depth()
 
-		ctx.send(
+		await ctx.send(
 			"Current Cutie: {}\nLifetime: {}\nLast Picked: {}\nDepth: {}"
 				.format(
 					cutie_current_id, 
