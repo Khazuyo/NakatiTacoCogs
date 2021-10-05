@@ -4,8 +4,6 @@ Various cogs for RED Discord Bot v3.
 
 I'm releasing those under the terms of the GNU AGPL license (see the LICENSE file) so please make sure you agree to its terms before re-using anything, thanks! (:
 
--------
-
 ## What's inside?
 
 This project contains the following cogs:
