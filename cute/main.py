@@ -60,7 +60,7 @@ class Cutie(commands.Cog):
 				nameOfCutie = "Nobody"
 
 			else:
-				newCutie = random.choice(allNLastAuthors.values())
+				newCutie = random.choice(list(allNLastAuthors.values()))
 
 				if newCutie == self.bot:
 					nameOfCutie = "I"
