@@ -45,7 +45,7 @@ class Cutie(commands.Cog):
 		# Announce!
 
 		# Do we need to pick a new cutie?
-		cutieExpired = (cutie_last_picked_at + cutie_lifetime_seconds) > datetime.now().timestamp()
+		cutieExpired = datetime.now().timestamp() > (cutie_last_picked_at + cutie_lifetime_seconds)
 		weNeedToPickSomeone = (cutie_current_id == 0) or cutieExpired
 
 		nameOfCutie = ""
@@ -95,11 +95,12 @@ class Cutie(commands.Cog):
 		message_history_depth = await self.config.guild(ctx.guild).message_history_depth()
 
 		await ctx.send(
-			"Current Cutie: {}\nLifetime: {}\nLast Picked: {}\nDepth: {}"
+			"Current Cutie: {}\nLifetime: {}\nLast Picked: {}\nDepth: {}\nRemaining Lifetime: {}"
 				.format(
 					cutie_current_id, 
 					cutie_lifetime_seconds, 
 					cutie_last_picked_at, 
-					message_history_depth
+					message_history_depth,
+					(cutie_last_picked_at + cutie_lifetime_seconds) - datetime.now().timestamp() 
 					)
 				)
