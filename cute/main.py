@@ -6,7 +6,7 @@ import random
 from redbot.core import Config
 from redbot.core import commands
 
-class Cute(commands.Cog):
+class Cutie(commands.Cog):
 
 	def __init__(self, bot, *args, **kwargs):
 		super().__init__(*args, **kwargs)
