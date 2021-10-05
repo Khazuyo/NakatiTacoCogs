@@ -30,7 +30,7 @@ class Cute(commands.Cog):
 		self.config.register_guild(**default_guild)
 
 	@commands.command()
-	async def cute(self, ctx):
+	async def cutie(self, ctx):
 		current_cutie_id = await self.config.guild(ctx.guild).current_cutie_id()
 		cutie_lifetime_seconds = await self.config.guild(ctx.guild).cutie_lifetime_seconds()
 		cutie_last_picked_at = await self.config.guild(ctx.guild).cutie_last_picked_at()
