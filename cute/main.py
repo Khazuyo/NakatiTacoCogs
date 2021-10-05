@@ -9,6 +9,8 @@ from redbot.core import Config
 from redbot.core import commands
 from redbot.core import checks
 
+from discord import Color, Embed
+
 class Cutie(commands.Cog):
 
 	def __init__(self, bot, *args, **kwargs):
