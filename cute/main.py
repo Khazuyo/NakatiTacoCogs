@@ -25,13 +25,13 @@ class Cutie(commands.Cog):
 			"message_history_depth": 100,
 			"cutie_lifetime_seconds": 60,
 			"cutie_last_picked_at": 0,
-			"cutie_id": 0
+			"cutie_current_id": 0
 		}
 		self.config.register_guild(**default_guild)
 
 	@commands.command()
 	async def cutie(self, ctx):
-		current_cutie_id = await self.config.guild(ctx.guild).current_cutie_id()
+		cutie_current_id = await self.config.guild(ctx.guild).cutie_current_id()
 		cutie_lifetime_seconds = await self.config.guild(ctx.guild).cutie_lifetime_seconds()
 		cutie_last_picked_at = await self.config.guild(ctx.guild).cutie_last_picked_at()
 		
@@ -43,7 +43,7 @@ class Cutie(commands.Cog):
 
 		# Do we need to pick a new cutie?
 		cutieExpired = (cutie_last_picked_at + cutie_lifetime_seconds) > datetime.now().timestamp()
-		weNeedToPickSomeone = (current_cutie_id == 0) or cutieExpired
+		weNeedToPickSomeone = (cutie_current_id == 0) or cutieExpired
 
 		nameOfCutie = ""
 
@@ -65,13 +65,13 @@ class Cutie(commands.Cog):
 				else:
 					nameOfCutie = newCutie.display_name
 
-				self.config.guild(ctx.guild).current_cutie_id.set(newCutie.id)
+				self.config.guild(ctx.guild).cutie_current_id.set(newCutie.id)
 				self.config.guild(ctx.guild).cutie_last_picked_at.set(datetime.now().timestamp())
 
 		else:
 			# Just get the user's name
 			try:
-				cutieUser = ctx.guild.fetch_user(current_cutie_id)
+				cutieUser = ctx.guild.fetch_user(cutie_current_id)
 				nameOfCutie = cutieUser.display_name
 			except NotFound:
 				nameOfCutie = "Anonymous"
