@@ -2,4 +2,15 @@
 
 Various cogs for RED Discord Bot v3.
 
-If you are reading this and you're not Khazzy feel free to let this code inspire you. However, please don't simply re-use my stuff. Hit me on Discord instead: Khazzy#9001
+I'm releasing those under the terms of the GNU AGPL license (see the LICENSE file) so please make sure you agree to its terms before re-using anything, thanks! (:
+
+-------
+
+## What's inside?
+
+This project contains the following cogs:
+
+### `cute`
+
+The `cute` cog picks a random user from the current chat's last n entries and declares them the "Cutie of the next xx Minutes".
+If `cute` is used within the timespan of xx Minutes it will simply repeat who's the current Cutie.
