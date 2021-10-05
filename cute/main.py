@@ -80,7 +80,7 @@ class Cutie(commands.Cog):
 		try:
 			embed = discord.Embed(
 				title=cuteMember.display_name, 
-				description="... is the cutie of the server!"
+				description="... is the cutie of the server!",
 				color=Color.orange()
 			)
 			
