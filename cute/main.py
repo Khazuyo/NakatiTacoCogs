@@ -93,10 +93,10 @@ class Cutie(commands.Cog):
 			embed.set_footer(text="Can pick a new cutie in {time} seconds!".format(time=timeToNextPick))
 			embed.set_thumbnail(url=cuteMember.avatar_url)
 
-			await context.send(embed=embed)
+			await ctx.send(embed=embed)
 
 		except discord.errors.HTTPException as httpEx:
-			await context.send("The current server cutie is:\n\n**{}**".format(cuteMember.display_name))
+			await ctx.send("The current server cutie is:\n\n**{}**".format(cuteMember.display_name))
 			print(str(httpEx))
 
 	@commands.command()
