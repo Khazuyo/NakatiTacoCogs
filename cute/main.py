@@ -50,6 +50,8 @@ class Cutie(commands.Cog):
 		nameOfCutie = ""
 
 		if weNeedToPickSomeone:
+			await ctx.send("Picking a new cutie...")
+			
 			message_history_depth = await self.config.guild(ctx.guild).message_history_depth()
 
 			allNLastAuthors = {}
