@@ -86,12 +86,12 @@ class Cutie(commands.Cog):
 				description="... is the cutie of the server!",
 				color=Color.orange()
 			)
-			
+
 			timeToNextPick = (cutie_last_picked_at + cutie_lifetime_seconds) - datetime.now().timestamp();
 			if timeToNextPick < 0:
 				timeToNextPick = 0
 
-			embed.set_footer(text="Can pick a new cutie in {time} seconds!".format(time=timeToNextPick))
+			embed.set_footer(text="Can pick a new cutie in {time:.0f} seconds!".format(time=timeToNextPick))
 			embed.set_thumbnail(url=cuteMember.avatar_url)
 
 			await ctx.send(embed=embed)
