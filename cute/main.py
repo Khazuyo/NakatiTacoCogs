@@ -25,7 +25,7 @@ class Cute(Cog, Settings, GroupCommands):
 		default_guild = {
 			"message_history_depth": 100,
 			"cutie_lifetime_seconds": 60,
-			"cutie_last_picked_at": 0´,
+			"cutie_last_picked_at": 0,
 			"cutie_id": 0
 		}
 		self.config.register_guild(**default_guild)
