@@ -91,7 +91,7 @@ class Cutie(commands.Cog):
 			if timeToNextPick < 0:
 				timeToNextPick = 0
 
-			embed.set_footer(text="Can pick a new cutie in {time:.0f} seconds!".format(time=timeToNextPick))
+			embed.set_footer(text="Will be able to pick a new cutie in {time:.0f}s!".format(time=timeToNextPick))
 			embed.set_thumbnail(url=cuteMember.avatar_url)
 
 			await ctx.send(embed=embed)
