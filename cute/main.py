@@ -84,3 +84,21 @@ class Cutie(commands.Cog):
 		cutieAnnouncement = "{} is the Cutie of the Server right now!".format(nameOfCutie)
 
 		await ctx.send(cutieAnnouncement)
+
+	@commands.command()
+	@checks.admin_or_permissions(manage_guild=True)
+	async def cutiestats(self, ctx):
+		cutie_current_id = await self.config.guild(ctx.guild).cutie_current_id()
+		cutie_lifetime_seconds = await self.config.guild(ctx.guild).cutie_lifetime_seconds()
+		cutie_last_picked_at = await self.config.guild(ctx.guild).cutie_last_picked_at()
+		message_history_depth = await self.config.guild(ctx.guild).message_history_depth()
+
+		ctx.send(
+			"Current Cutie: {}\nLifetime: {}\nLast Picked: {}\nDepth: {}"
+				.format(
+					cutie_current_id, 
+					cutie_lifetime_seconds, 
+					cutie_last_picked_at, 
+					message_history_depth
+					)
+				)
