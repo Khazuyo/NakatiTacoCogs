@@ -3,11 +3,10 @@ import discord
 import logging
 import random
 
-from redbot.core.commands import Cog
 from redbot.core import Config
-from redbot.core.data_manager import bundled_data_path
+from redbot.core import commands
 
-class Cute(Cog, Settings, GroupCommands):
+class Cute(commands.Cog):
 
 	def __init__(self, bot, *args, **kwargs):
 		super().__init__(*args, **kwargs)
