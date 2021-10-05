@@ -2,7 +2,8 @@ import dataclasses
 import discord
 import logging
 import random
-import datetime
+
+from datetime import datetime
 
 from redbot.core import Config
 from redbot.core import commands
