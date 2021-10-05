@@ -53,7 +53,7 @@ class Cutie(commands.Cog):
 			message_history_depth = self.config.guild(ctx.guild).message_history_depth()
 
 			allNLastAuthors = {}
-			async for msg in ctx.channel.history(limit=message_history_depth):
+			async for msg in ctx.channel.history(limit=int(message_history_depth)):
 				allNLastAuthors[msg.author.id] = msg.author
 
 			if len(allNLastAuthors) < 1:
