@@ -7,6 +7,7 @@ from datetime import datetime
 
 from redbot.core import Config
 from redbot.core import commands
+from redbot.core import checks
 
 class Cutie(commands.Cog):
 
