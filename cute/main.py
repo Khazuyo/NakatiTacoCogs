@@ -48,7 +48,7 @@ class Cutie(commands.Cog):
 		cutieExpired = datetime.now().timestamp() > (cutie_last_picked_at + cutie_lifetime_seconds)
 		weNeedToPickSomeone = (cutie_current_id == 0) or cutieExpired
 
-		nameOfCutie = ""
+		cuteMember = None
 
 		if weNeedToPickSomeone:
 			await ctx.send("Picking a new cutie...")
@@ -60,31 +60,42 @@ class Cutie(commands.Cog):
 				allNLastAuthors[msg.author.id] = msg.author
 
 			if len(allNLastAuthors) < 1:
-				nameOfCutie = "Nobody"
+				await ctx.send("Nobody posted anything here yet!")
+				return
 
 			else:
-				newCutie = random.choice(list(allNLastAuthors.values()))
+				cuteMember = random.choice(list(allNLastAuthors.values()))
 
-				if newCutie == self.bot:
-					nameOfCutie = "I"
-				else:
-					nameOfCutie = newCutie.display_name
-
-				await self.config.guild(ctx.guild).cutie_current_id.set(newCutie.id)
+				await self.config.guild(ctx.guild).cutie_current_id.set(cuteMember.id)
 				await self.config.guild(ctx.guild).cutie_last_picked_at.set(datetime.now().timestamp())
 
 		else:
-			# Just get the user's name
-			cutieUser = ctx.guild.get_member(cutie_current_id)
+			cuteMember = ctx.guild.get_member(cutie_current_id)
 
-			if cutieUser == None:
-				nameOfCutie = "An anonymous snowflake"
-			else:
-				nameOfCutie = cutieUser.display_name
+			# Member could have left!
+			if cuteMember == None:
+				await ctx.send("Cute member managed to escape! :O")
+				return
 
-		cutieAnnouncement = "{} is the Cutie of the Server right now!".format(nameOfCutie)
+		try:
+			embed = discord.Embed(
+				title=cuteMember.display_name, 
+				description="... is the cutie of the server!"
+				color=Color.orange()
+			)
+			
+			timeToNextPick = (cutie_last_picked_at + cutie_lifetime_seconds) - datetime.now().timestamp();
+			if timeToNextPick < 0:
+				timeToNextPick = 0
 
-		await ctx.send(cutieAnnouncement)
+			embed.set_footer(text="Can pick a new cutie in {time} seconds!".format(time=timeToNextPick))
+			embed.set_thumbnail(url=cuteMember.avatar_url)
+
+			await context.send(embed=embed)
+
+		except discord.errors.HTTPException as httpEx:
+			await context.send("The current server cutie is:\n\n**{}**".format(cuteMember.display_name))
+			print(str(httpEx))
 
 	@commands.command()
 	@checks.admin_or_permissions(manage_guild=True)
@@ -102,5 +113,5 @@ class Cutie(commands.Cog):
 					cutie_last_picked_at, 
 					message_history_depth,
 					(cutie_last_picked_at + cutie_lifetime_seconds) - datetime.now().timestamp() 
-					)
 				)
+			)
