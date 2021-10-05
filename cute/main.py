@@ -51,7 +51,7 @@ class Cutie(commands.Cog):
 
 		if weNeedToPickSomeone:
 			await ctx.send("Picking a new cutie...")
-			
+
 			message_history_depth = await self.config.guild(ctx.guild).message_history_depth()
 
 			allNLastAuthors = {}
@@ -74,11 +74,12 @@ class Cutie(commands.Cog):
 
 		else:
 			# Just get the user's name
-			try:
-				cutieUser = ctx.guild.fetch_user(cutie_current_id)
+			cutieUser = ctx.guild.get_member(cutie_current_id)
+
+			if cutieUser == None:
+				nameOfCutie = "An anonymous snowflake"
+			else:
 				nameOfCutie = cutieUser.display_name
-			except NotFound:
-				nameOfCutie = "Anonymous"
 
 		cutieAnnouncement = "{} is the Cutie of the Server right now!".format(nameOfCutie)
 
