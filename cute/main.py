@@ -67,9 +67,10 @@ class Cutie(commands.Cog):
 
 			else:
 				cuteMember = random.choice(list(allNLastAuthors.values()))
+				cutie_last_picked_at = datetime.now().timestamp()
 
 				await self.config.guild(ctx.guild).cutie_current_id.set(cuteMember.id)
-				await self.config.guild(ctx.guild).cutie_last_picked_at.set(datetime.now().timestamp())
+				await self.config.guild(ctx.guild).cutie_last_picked_at.set(cutie_last_picked_at)
 
 		else:
 			cuteMember = ctx.guild.get_member(cutie_current_id)
