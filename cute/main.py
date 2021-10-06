@@ -17,6 +17,7 @@ class Cutie(commands.Cog):
 		super().__init__(*args, **kwargs)
 		
 		self.bot = bot
+		self.logger = logging.getLogger("nakati.cutie")
 
 		# Config setup (identifier isn't random btw :3)
 		self.config = Config.get_conf(self, identifier=211803212005, force_registration=True,)
@@ -109,7 +110,7 @@ class Cutie(commands.Cog):
 
 		except discord.errors.HTTPException as httpEx:
 			await ctx.send("The current server cutie is:\n\n**{}**".format(cuteMember.display_name))
-			print(str(httpEx))
+			self.logger.warning(str(httpEx))
 
 	@commands.command()
 	@checks.admin_or_permissions(manage_guild=True)
