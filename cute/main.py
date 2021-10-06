@@ -118,3 +118,17 @@ class Cutie(commands.Cog):
 					(cutie_last_picked_at + cutie_lifetime_seconds) - datetime.now().timestamp() 
 				)
 			)
+
+	@commands.group()
+	async def cutieset(ctx):
+		if ctx.invoked_subcommand is None:
+			await ctx.send("Invalid Subcommand")
+
+	@cutieset.command()
+	@checks.admin_or_permissions(manage_guild=True)
+	async def lifetime(ctx, time_in_seconds: int):
+		if time_in_seconds < 0:
+			await ctx.send("The time must be 0 or greater!")
+			return
+
+		await self.config.guild(ctx.guild).cutie_lifetime_seconds.set(time_in_seconds)
