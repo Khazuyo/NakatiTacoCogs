@@ -141,3 +141,13 @@ class Cutie(commands.Cog):
 
 		await self.config.guild(ctx.guild).cutie_lifetime_seconds.set(time_in_seconds)
 		await ctx.tick()
+
+	@cutieset.command()
+	@checks.admin_or_permissions(manage_guild=True)
+	async def depth(self, ctx, depth_in_messages: int):
+		if depth_in_messages < 1:
+			await ctx.send("Depth must be at least 1 to make any sense at all")
+			return
+
+		await self.config.guild(ctx.guild).message_history_depth.set(depth_in_messages)
+		await ctx.tick()
