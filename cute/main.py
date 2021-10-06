@@ -120,13 +120,14 @@ class Cutie(commands.Cog):
 			)
 
 	@commands.group()
-	async def cutieset(ctx):
+	@checks.admin_or_permissions(manage_guild=True)
+	async def cutieset(self, ctx):
 		if ctx.invoked_subcommand is None:
 			await ctx.send("Invalid Subcommand")
 
 	@cutieset.command()
 	@checks.admin_or_permissions(manage_guild=True)
-	async def lifetime(ctx, time_in_seconds: int):
+	async def lifetime(self, ctx, time_in_seconds: int):
 		if time_in_seconds < 0:
 			await ctx.send("The time must be 0 or greater!")
 			return
