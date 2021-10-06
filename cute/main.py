@@ -133,3 +133,4 @@ class Cutie(commands.Cog):
 			return
 
 		await self.config.guild(ctx.guild).cutie_lifetime_seconds.set(time_in_seconds)
+		await ctx.tick()
