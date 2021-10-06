@@ -80,11 +80,18 @@ class Cutie(commands.Cog):
 				await ctx.send("Cute member managed to escape! :O")
 				return
 
+		# Look for a color role and extract the color used
+		embedColor = Color.orange()
+		for role in cuteMember.roles:
+			if "color-" in role.name:
+				embedColor = role.color
+				break
+
 		try:
 			embed = discord.Embed(
 				title=cuteMember.display_name, 
 				description="... is the cutie of the server!",
-				color=Color.orange()
+				color=embedColor
 			)
 
 			timeToNextPick = (cutie_last_picked_at + cutie_lifetime_seconds) - datetime.now().timestamp();
