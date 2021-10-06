@@ -109,7 +109,8 @@ class Cutie(commands.Cog):
 			await ctx.send(embed=embed)
 
 		except discord.errors.HTTPException as httpEx:
-			await ctx.send("The current server cutie is:\n\n**{}**".format(cuteMember.display_name))
+			#await ctx.send("The current server cutie is:\n\n**{}**".format(cuteMember.display_name))
+			await ctx.send("Discord seems to have a hiccup - can you slow down a bit please and check <https://discordstatus.com>? Thanks and sowwy ;w; <3")
 			self.logger.warning(str(httpEx))
 
 	@commands.command()
