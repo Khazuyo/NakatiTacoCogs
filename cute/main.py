@@ -61,7 +61,7 @@ class Cutie(commands.Cog):
 			allNLastAuthors = {}
 			async for msg in ctx.channel.history(limit=int(message_history_depth)):
 				# Don't crown yourself!
-				if msg.author == self.bot:
+				if msg.author.bot:
 					continue
 
 				allNLastAuthors[msg.author.id] = msg.author
