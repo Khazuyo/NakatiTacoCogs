@@ -103,7 +103,13 @@ class Cutie(commands.Cog):
 			if timeToNextPick < 0:
 				timeToNextPick = 0
 
-			embed.set_footer(text="Will be able to pick a new cutie in {time:.0f}s!".format(time=timeToNextPick))
+			# Neat and simple way to do it using division with remainder
+			# https://stackoverflow.com/questions/27779677/how-to-format-elapsed-time-from-seconds-to-hours-minutes-seconds-and-milliseco
+			remainingHours, rem = divmod(timeToNextPick, 3600)
+			remainingMinutes, remainingSeconds = divmod(rem, 60)
+			remainingTime = "{:0>2}:{:0>2}:{:05.2f}".format(int(remainingHours), int(remainingMinutes), remainingSeconds)
+
+			embed.set_footer(text="Will be able to pick a new cutie in {time}".format(time=remainingTime))
 			embed.set_thumbnail(url=cuteMember.avatar_url)
 
 			await ctx.send(embed=embed)
