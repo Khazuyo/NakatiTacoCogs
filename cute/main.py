@@ -107,7 +107,7 @@ class Cutie(commands.Cog):
 			# https://stackoverflow.com/questions/27779677/how-to-format-elapsed-time-from-seconds-to-hours-minutes-seconds-and-milliseco
 			remainingHours, rem = divmod(timeToNextPick, 3600)
 			remainingMinutes, remainingSeconds = divmod(rem, 60)
-			remainingTime = "{:0>2}:{:0>2}:{:05.2f}".format(int(remainingHours), int(remainingMinutes), remainingSeconds)
+			remainingTime = "{:0>2}h {:0>2}m {:05.2f}s".format(int(remainingHours), int(remainingMinutes), remainingSeconds)
 
 			embed.set_footer(text="Will be able to pick a new cutie in {time}".format(time=remainingTime))
 			embed.set_thumbnail(url=cuteMember.avatar_url)
