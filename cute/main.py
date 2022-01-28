@@ -82,7 +82,8 @@ class Cutie(commands.Cog):
 
 			# Member could have left!
 			if cuteMember == None:
-				await ctx.send("Cute member managed to escape! :O")
+				await ctx.send("Cute member managed to escape! Please try again! :O")
+                                await self.config.guild(ctx.guild).cutie_current_id.set(0)
 				return
 
 		# Look for a color role and extract the color used
