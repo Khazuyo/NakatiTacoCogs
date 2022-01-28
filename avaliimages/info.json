@@ -1,0 +1,10 @@
+{
+    "author" : ["Khazzy#9001", "Soren#1865"],
+    "install_msg" : "Thanks for installing this little module.",
+    "name" : "Avali Images",
+    "short" : "Need a quick chirp? Look no further!",
+    "description" : "Let your users see a cute spess birb image",
+    "disabled" : false,
+    "tags" : ["avali", "chirpchirp"],
+    "min_python_version": [3, 6, 0]
+}
