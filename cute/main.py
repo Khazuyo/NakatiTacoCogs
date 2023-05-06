@@ -120,7 +120,7 @@ class Cutie(commands.Cog):
 				remainingTime += "{:05.2f}s".format(remainingSeconds)
 
 			embed.set_footer(text="Will be able to pick a new cutie in {time}".format(time=remainingTime))
-			embed.set_thumbnail(url=cuteMember.avatar_url)
+			embed.set_thumbnail(url=cuteMember.avatar.url)
 
 			await ctx.send(embed=embed)
 
