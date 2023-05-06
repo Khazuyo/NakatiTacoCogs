@@ -103,7 +103,8 @@ class AvaliImages(commands.Cog):
         # Kill the messenger so it doesn't get processed
         await context.message.delete()
 
-        posts = await context.channel.history(limit=1000).flatten()
+        posts = [message async for message in context.channel.history(limit=1000)]
+        
         newDB = {}
         numRecordsAdded = 0
 
